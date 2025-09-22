@@ -9,7 +9,7 @@ for ($i = 0; $i <= 1337; $i++) {
     // Condition pour ignorer les nombres spécifiés.
     if ($i == 26 || $i == 37 || $i == 88 || $i == 1111) {
         // 'continue;' arrête cette itération et passe directement à la suivante.
-        continue;
+        continue; //! le continue n'est pas obligatoire : on peut laisser vide
     }
     
     // Si la condition 'if' n'est pas remplie, on affiche le nombre.
@@ -44,6 +44,7 @@ echo "<h1>Méthode 3 : L'approche 'Moderne' avec un Tableau (in_array)</h1>";
  * uniquement s'il N'EST PAS dans cette liste.
  */
 
+//! in_array est interdite dans les TP
 // On définit la liste des nombres à exclure. C'est propre et facile à modifier.
 $nombresAExclure = [26, 37, 88, 1111];
 

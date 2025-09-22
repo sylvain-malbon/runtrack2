@@ -7,7 +7,7 @@ et 50 : souligner.
 Afficher “La Plateforme_” à la place de 42.
 */
 
-$nombre_max = 100;
+$nombre_max = 100; //! on peut faire sans et mettre ci-dessous $i <= 100 car exercice simple
 
 for ($i = 0; $i <= $nombre_max; $i++) {
 
