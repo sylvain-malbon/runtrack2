@@ -1,0 +1,10 @@
+body {
+  background-color: #e6ffe6;
+  font-family: 'Comic Sans MS', cursive;
+}
+
+form {
+  padding: 20px;
+  border: 2px dotted #060;
+  background-color: #ccffcc;
+}
