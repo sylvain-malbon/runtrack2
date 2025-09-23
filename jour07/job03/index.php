@@ -1,5 +1,6 @@
 <?php
-/*
+/**
+INSTRUCTIONS:
 Job 03
 Créez une fonction nommée “getHello()”.
 Cette fonction doit retourner “Hello LaPlateforme!”.

@@ -1,6 +1,7 @@
 index.php
 <?php
-/*
+/**
+INSTRUCTIONS:
 Job 05
 Créez une fonction nommée “occurrences($str, $char)”.
 Cette fonction prend en paramètre une chaîne de caractères nommée “$str” et un

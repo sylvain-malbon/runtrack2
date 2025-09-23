@@ -1,5 +1,6 @@
 <?php
-/*
+/**
+INSTRUCTIONS:
 Job 04
 Créez une fonction nommée “calcule()” qui prend 3 paramètres :
 ● le premier, “$a”, est un nombre,
