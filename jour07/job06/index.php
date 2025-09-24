@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 Job 06
 Créez une fonction nommée “leetSpeak($str)”. Cette fonction prend en paramètre une
 chaîne de caractères nommée “$str”.
