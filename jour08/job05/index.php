@@ -11,3 +11,26 @@ toutes les cases ont été cliquées et que personne n’a gagné, affichez “M
 réinitialisez la partie. Un bouton “réinitialiser la partie” présent en dessous de la grille
 permet également de réinitialiser la partie à tout moment.
  */
+session_start(); // habitude
+
+// ébauche de structure HTML à la main pour la retenir par coeur
+?>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta chatref="UTF-8">
+    <title>Jeu du morpion</title>
+</head>
+
+<body>
+    <h1>Jeu du morpion (essai structure HTML)</h1>
+    <table>
+        <tr>
+            <th>Essai</th>
+            <th>Essai</th>
+            <th>Essai</th>
+        </tr>
+</body>
+
+</html>
