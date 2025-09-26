@@ -133,10 +133,20 @@ _(Note : Dans le Job 01, le PDF ne demande pas de déclarer officiellement ce li
 
 ---
 
-## **Étape 4 : Sauvegarder votre plan de construction (`Export`)**
+## **Étape 4 bis : Comment exporter dans phpMyAdmin**
 
-Maintenant que vous avez donné toutes les instructions pour créer votre meuble et ses tiroirs, le PDF vous demande d'exporter la base.
+- Dans la colonne de gauche, clique sur le nom de ta base (jour09) pour l’ouvrir.
 
-C'est comme **sauvegarder le plan de montage** de votre meuble. Le fichier `.sql` que vous allez obtenir est un simple fichier texte contenant toutes les commandes `CREATE TABLE` que nous venons de voir. Si demain vous voulez reconstruire exactement le même meuble sur un autre ordinateur, il vous suffira d'exécuter ce fichier.
+- En haut, clique sur l’onglet Export.
 
-J'espère que cette explication "en mode meuble à tiroirs" est plus claire. Si chaque étape est comprise, nous pouvons passer au **Job 02**, qui consiste à commencer à remplir nos tiroirs avec des dossiers.
+- Laisse les options par défaut :
+
+  - Méthode d’exportation : Rapide
+
+  - Format : SQL
+
+- Clique sur Exécuter (ou Go).
+
+Ton navigateur va télécharger un fichier jour09.sql.
+
+👉 Ce fichier contient toutes les instructions SQL (CREATE TABLE, etc.) que tu as écrites. C’est ton plan de montage sauvegardé. Tu pourras le réimporter plus tard sur un autre serveur pour recréer exactement la même base.
