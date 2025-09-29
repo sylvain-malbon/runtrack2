@@ -1,16 +1,18 @@
 <?php
 
 /**
-Job 03 – jour09
-En utilisant PHP et mysqli, connectez-vous à la base de données “jour09”.
-À l’aide d’une requête SQL, récupérez le prénom, le nom et la date de naissance
-des étudiants de sexe féminin. Affichez le résultat dans un tableau HTML.
+ * Job 04 – jour09
+En utilisant php, connectez-vous à la base de données “jour09”. A l’aide d’une requête
+SQL, récupérez l’ensemble des informations des étudiants dont prenom commence par
+un “T”. Affichez le résultat de cette requête dans un tableau html. La première ligne de
+votre tableau html doit contenir le nom des champs. Les suivantes doivent contenir les
+données présentes dans votre base de données.
  */
 
 // Le mode de connexion (mysqli ou PDO) est choisi dynamiquement via l'URL : ?mode=pdo ou ?mode=mysqli
 
 $mode = isset($_GET['mode']) ? $_GET['mode'] : 'mysqli';
-$femmes = [];
+$etudiants = [];
 
 if ($mode === 'mysqli') {
     $mysqli = new mysqli("localhost", "root", "", "jour09");
@@ -19,7 +21,7 @@ if ($mode === 'mysqli') {
         die("Erreur de connexion mysqli : " . $mysqli->connect_error);
     }
 
-    $sql = "SELECT prenom, nom, naissance FROM etudiants WHERE sexe = 'femme'";
+    $sql = "SELECT * FROM etudiants WHERE prenom LIKE 'T%'";
     $result = $mysqli->query($sql);
 
     if (!$result) {
@@ -27,7 +29,7 @@ if ($mode === 'mysqli') {
     }
 
     while ($row = $result->fetch_assoc()) {
-        $femmes[] = $row;
+        $etudiants[] = $row;
     }
 
     $result->free();
@@ -37,11 +39,11 @@ if ($mode === 'mysqli') {
         $pdo = new PDO("mysql:host=localhost;dbname=jour09;charset=utf8", "root", "");
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "SELECT prenom, nom, naissance FROM etudiants WHERE sexe = 'femme'";
+        $sql = "SELECT * FROM etudiants WHERE prenom LIKE 'T%'";
         $stmt = $pdo->query($sql);
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $femmes[] = $row;
+            $etudiants[] = $row;
         }
     } catch (PDOException $e) {
         die("Erreur PDO : " . $e->getMessage());
@@ -56,7 +58,7 @@ if ($mode === 'mysqli') {
 
 <head>
     <meta charset="UTF-8">
-    <title>Étudiantes – <?php echo strtoupper($mode); ?></title>
+    <title>Étudiants en T – <?php echo strtoupper($mode); ?></title>
     <style>
         table {
             border-collapse: collapse;
@@ -80,7 +82,7 @@ if ($mode === 'mysqli') {
 </head>
 
 <body>
-    <h1>Étudiantes (mode : <?php echo strtoupper($mode); ?>)</h1>
+    <h1>Étudiants dont le prénom commence par "T" (mode : <?php echo strtoupper($mode); ?>)</h1>
 
     <div class="switch">
         <a href="?mode=mysqli">Utiliser mysqli</a> |
@@ -93,14 +95,18 @@ if ($mode === 'mysqli') {
                 <th>Prénom</th>
                 <th>Nom</th>
                 <th>Date de naissance</th>
+                <th>Sexe</th>
+                <th>Email</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($femmes as $etudiante): ?>
+            <?php foreach ($etudiants as $etudiant): ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($etudiante['prenom']); ?></td>
-                    <td><?php echo htmlspecialchars($etudiante['nom']); ?></td>
-                    <td><?php echo htmlspecialchars($etudiante['naissance']); ?></td>
+                    <td><?php echo htmlspecialchars($etudiant['prenom']); ?></td>
+                    <td><?php echo htmlspecialchars($etudiant['nom']); ?></td>
+                    <td><?php echo htmlspecialchars($etudiant['naissance']); ?></td>
+                    <td><?php echo htmlspecialchars($etudiant['sexe']); ?></td>
+                    <td><?php echo htmlspecialchars($etudiant['email']); ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
