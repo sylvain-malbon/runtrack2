@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Job 05 – jour09
+Job 05 – jour09
 En utilisant php, connectez-vous à la base de données “jour09”. A l’aide d’une requête
 SQL, récupérez l’ensemble des informations des étudiants qui ont moins de 18 ans.
 Affichez le résultat de cette requête dans un tableau html. La première ligne de votre

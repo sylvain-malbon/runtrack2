@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Job 06 – jour09
+Job 06 – jour09
 En utilisant php, connectez-vous à la base de données “jour09”. A l’aide d’une requête
 SQL, récupérez le nombre total d’étudiants dans une colonne nommée “nb_etudiants”.
 Affichez le résultat de cette requête dans un tableau html. La première ligne de votre
