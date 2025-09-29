@@ -21,7 +21,7 @@ if ($mode === 'mysqli') {
         die("Erreur de connexion mysqli : " . $mysqli->connect_error);
     }
 
-    $sql = "SELECT SUM(superficie) AS superficie_totale FROM etages";
+    $sql = "SELECT SUM(superficie) AS superficie_totale FROM etage";
     $result = $mysqli->query($sql);
 
     if (!$result) {
@@ -37,7 +37,7 @@ if ($mode === 'mysqli') {
         $pdo = new PDO("mysql:host=localhost;dbname=jour09;charset=utf8", "root", "");
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "SELECT SUM(superficie) AS superficie_totale FROM etages";
+        $sql = "SELECT SUM(superficie) AS superficie_totale FROM etage";
         $stmt = $pdo->query($sql);
 
         $resultat = $stmt->fetch(PDO::FETCH_ASSOC);

@@ -21,9 +21,9 @@ if ($mode === 'mysqli') {
         die("Erreur de connexion mysqli : " . $mysqli->connect_error);
     }
 
-    $sql = "SELECT salles.nom AS nom_salle, etages.nom AS nom_etage 
+    $sql = "SELECT salles.nom AS nom_salle, etage.nom AS nom_etage 
             FROM salles 
-            INNER JOIN etages ON salles.id_etage = etages.id";
+            INNER JOIN etage ON salles.id_etage = etage.id";
     $result = $mysqli->query($sql);
 
     if (!$result) {
@@ -41,9 +41,9 @@ if ($mode === 'mysqli') {
         $pdo = new PDO("mysql:host=localhost;dbname=jour09;charset=utf8", "root", "");
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "SELECT salles.nom AS nom_salle, etages.nom AS nom_etage 
+        $sql = "SELECT salles.nom AS nom_salle, etage.nom AS nom_etage 
                 FROM salles 
-                INNER JOIN etages ON salles.id_etage = etages.id";
+                INNER JOIN etage ON salles.id_etage = etage.id";
         $stmt = $pdo->query($sql);
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
