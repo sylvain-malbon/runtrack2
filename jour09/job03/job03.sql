@@ -1,0 +1,1 @@
+SELECT * FROM etudiants; -- astérisque important pour sélectionner tous les étudiants
