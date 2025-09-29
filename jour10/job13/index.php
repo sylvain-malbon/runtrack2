@@ -10,3 +10,105 @@ dans votre base de données.
  */
 
 // Le mode de connexion (mysqli ou PDO) est choisi dynamiquement via l'URL : ?mode=pdo ou ?mode=mysqli
+
+$mode = isset($_GET['mode']) ? $_GET['mode'] : 'mysqli';
+$salles = [];
+
+if ($mode === 'mysqli') {
+    $mysqli = new mysqli("localhost", "root", "", "jour09");
+
+    if ($mysqli->connect_error) {
+        die("Erreur de connexion mysqli : " . $mysqli->connect_error);
+    }
+
+    $sql = "SELECT salles.nom AS nom_salle, etages.nom AS nom_etage 
+            FROM salles 
+            INNER JOIN etages ON salles.id_etage = etages.id";
+    $result = $mysqli->query($sql);
+
+    if (!$result) {
+        die("Erreur dans la requête mysqli : " . $mysqli->error);
+    }
+
+    while ($row = $result->fetch_assoc()) {
+        $salles[] = $row;
+    }
+
+    $result->free();
+    $mysqli->close();
+} elseif ($mode === 'pdo') {
+    try {
+        $pdo = new PDO("mysql:host=localhost;dbname=jour09;charset=utf8", "root", "");
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "SELECT salles.nom AS nom_salle, etages.nom AS nom_etage 
+                FROM salles 
+                INNER JOIN etages ON salles.id_etage = etages.id";
+        $stmt = $pdo->query($sql);
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $salles[] = $row;
+        }
+    } catch (PDOException $e) {
+        die("Erreur PDO : " . $e->getMessage());
+    }
+} else {
+    die("Mode inconnu. Utilisez ?mode=pdo ou ?mode=mysqli dans l'URL.");
+}
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Salles et étages – <?php echo strtoupper($mode); ?></title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        thead {
+            background-color: #f2f2f2;
+        }
+
+        .switch {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Nom des salles et de leur étage (mode : <?php echo strtoupper($mode); ?>)</h1>
+
+    <div class="switch">
+        <a href="?mode=mysqli">Utiliser mysqli</a> |
+        <a href="?mode=pdo">Utiliser PDO</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom de la salle</th>
+                <th>Nom de l'étage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($salles as $salle): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($salle['nom_salle']); ?></td>
+                    <td><?php echo htmlspecialchars($salle['nom_etage']); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</body>
+
+</html>
